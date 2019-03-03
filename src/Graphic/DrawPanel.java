@@ -44,7 +44,7 @@ public class DrawPanel extends JPanel {
                     150, 150, randColor2);
             g2d.setPaint(gradient);
             g2d.fillOval(70,70 ,100,100);
-//dsdsfa
+//GItHUB test
         }
 
 }
