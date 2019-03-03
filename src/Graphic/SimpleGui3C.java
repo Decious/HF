@@ -17,6 +17,7 @@ public class SimpleGui3C implements ActionListener {
     private void go() {
         frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         JButton button = new JButton("Change Colors");
         button.addActionListener(this);
 

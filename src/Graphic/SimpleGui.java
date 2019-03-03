@@ -19,7 +19,6 @@ public class SimpleGui implements ActionListener {
 
         button = new JButton("Click me!");
         button.setSize(50,10);
-
         button.addActionListener(this);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
