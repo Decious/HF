@@ -21,7 +21,8 @@ public class DrawPanel extends JPanel {
 
         Color randColor = new Color(red, green, blue);
         graphics.setColor(randColor);
-        graphics.fillOval(70,70,100,100);
+        graphics.fillOval(70,70,100,50);
+
     }
 
 
