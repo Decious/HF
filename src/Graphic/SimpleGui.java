@@ -6,15 +6,15 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class SimpleGui implements ActionListener {
-    JButton button;
-    JFrame frame;
+    private JButton button;
+    private JFrame frame;
 
     public static void main(String[] args) {
         SimpleGui gui = new SimpleGui();
         gui.go();
     }
 
-    public void go() {
+    private void go() {
         frame = new JFrame();
 
         button = new JButton("Click me!");

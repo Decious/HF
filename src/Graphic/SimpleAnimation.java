@@ -24,6 +24,7 @@ public class SimpleAnimation {
         frame.setVisible(true);
 
         for (int i = 0; i < 130; i++) {
+
             x++;
             y++;
 
@@ -37,13 +38,12 @@ public class SimpleAnimation {
         }
     }
 
-    private class MyDrawPanel extends JPanel{
+     class MyDrawPanel extends JPanel{
         public void paintComponent(Graphics g){
-            int red = (int) (Math.random() * 255);
-            int green = (int) (Math.random() * 255);
-            int blue = (int) (Math.random() * 255);
-            Color randColor = new Color(red, green, blue);
-            g.setColor(randColor);
+            g.setColor(Color.white);
+            g.fillRect(0,0,this.getWidth(),this.getHeight());
+
+            g.setColor(Color.blue);
             g.fillOval(x,y,40,40);
         }
 
