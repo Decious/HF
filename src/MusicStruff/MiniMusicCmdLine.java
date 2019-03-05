@@ -16,14 +16,12 @@ public class MiniMusicCmdLine {
         }
     }
 
-    public void play(int instrument, int note) {
+    private void play(int instrument, int note) {
         try{
             Sequencer player = MidiSystem.getSequencer();
             player.open();
             Sequence seq = new Sequence (Sequence.PPQ, 4);
             Track track = seq.createTrack();
-
-            MidiEvent event = null;
 
             ShortMessage first = new ShortMessage();
             first.setMessage(192, 1, instrument, 0);

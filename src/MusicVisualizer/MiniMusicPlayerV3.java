@@ -76,6 +76,7 @@ public class MiniMusicPlayerV3 implements ControllerEventListener {
                 int width = (int) ((Math.random() * 120) + 10);
                 int x = (int) ((Math.random() * 200) + 10);
                 int y = (int) ((Math.random() * 200) + 10);
+
                 graphics.fillRect(x, y, height, width);
                 msg = false;
 

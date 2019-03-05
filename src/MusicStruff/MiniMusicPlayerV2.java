@@ -11,7 +11,7 @@ public class MiniMusicPlayerV2 implements ControllerEventListener {
         mini.go();
     }
 
-    public void go() {
+    private void go() {
         try {
             Sequencer sequencer = MidiSystem.getSequencer();
             sequencer.open();
