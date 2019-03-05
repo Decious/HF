@@ -1,5 +1,7 @@
 package MusicStruff;
 
+import MusicVisualizer.Util;
+
 import javax.sound.midi.*;
 
 public class MiniMusicPlayer {
