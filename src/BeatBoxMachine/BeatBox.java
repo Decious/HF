@@ -1,8 +1,4 @@
 package BeatBoxMachine;
-
-import BeatBoxMachine.Util;
-import javafx.scene.layout.Background;
-
 import javax.sound.midi.*;
 import javax.swing.*;
 import java.awt.*;
@@ -12,18 +8,16 @@ import java.util.ArrayList;
 
 public class BeatBox {
 
-    JPanel mainPanel;
-    ArrayList<JCheckBox> checkboxList;
-    Sequencer sequencer;
-    Sequence sequence;
-    Track track;
-    JFrame theFrame;
+    private ArrayList<JCheckBox> checkboxList;
+    private Sequencer sequencer;
+    private Sequence sequence;
+    private Track track;
 
-    String[] instrumentNames = {"Bass Drum", "Closed Hi-Hat", "Open Hi-Hat",
+    private String[] instrumentNames = {"Bass Drum", "Closed Hi-Hat", "Open Hi-Hat",
             "Acoustic Snare", "Crash Cymbal", "Hand Clap", "High Tom", "Hi Bongo",
             "Maracas", "Whistle", "Low Conga", "CowBell", "Vibraslap", "Low-mid Tom",
             "High Agogo", "Open Hi Conga"};
-    int[] instruments = {35, 42, 46, 38, 49, 39, 50, 60, 70, 72, 64, 56, 58, 47, 67, 63};
+    private int[] instruments = {35, 42, 46, 38, 49, 39, 50, 60, 70, 72, 64, 56, 58, 47, 67, 63};
 
 
     public static void main(String[] args) {
@@ -31,20 +25,20 @@ public class BeatBox {
     }
 
     private void buildGUI() {
-        theFrame = new JFrame("BeatBoxMachine");
+        JFrame theFrame = new JFrame("BeatBoxMachine");
         theFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         BorderLayout layout = new BorderLayout();
         JPanel background = new JPanel(layout);
         background.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        checkboxList = new ArrayList<JCheckBox>();
+        checkboxList = new ArrayList<>();
         Box buttonBox = new Box(BoxLayout.Y_AXIS);
 
-        JButton start = new JButton("START►");
+        JButton start = new JButton(" START ►");
         start.addActionListener(new MyStartListener());
         buttonBox.add(start);
 
-        JButton stop = new JButton("STOP||");
+        JButton stop = new JButton(" STOP ||");
         stop.addActionListener(new MyStopListener());
         buttonBox.add(stop);
 
@@ -69,7 +63,7 @@ public class BeatBox {
         GridLayout grid = new GridLayout(16, 16);
         grid.setVgap(1);
         grid.setHgap(2);
-        mainPanel = new JPanel(grid);
+        JPanel mainPanel = new JPanel(grid);
         background.add(BorderLayout.CENTER, mainPanel);
         for (int i = 0; i < 256; i++) {
             JCheckBox c = new JCheckBox();
@@ -101,7 +95,7 @@ public class BeatBox {
     }
 
     private void buildTrackAndStart() {
-        int[] trackList = null;
+        int[] trackList;
 
         sequence.deleteTrack(track);
         track = sequence.createTrack();
@@ -112,7 +106,7 @@ public class BeatBox {
             int key = instruments[i];
 
             for (int j = 0; j < 16; j++) {
-                JCheckBox jc = (JCheckBox) checkboxList.get(j + (16 * i));
+                JCheckBox jc = checkboxList.get(j + (16 * i));
                 if (jc.isSelected()) {
                     trackList[j] = key;
                 } else {
