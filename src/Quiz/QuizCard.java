@@ -9,7 +9,7 @@ public class QuizCard implements Serializable {
      private String answer;
      private String hint;
 
-     public QuizCard(String q, String a) {
+     QuizCard(String q, String a) {
          question = q;
          answer = a;
     }
