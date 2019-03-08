@@ -25,8 +25,12 @@ class ThreadTestDrive {
             Thread myThread = new Thread(threadJob);
             myThread.start();
 
-
-            System.out.println("Back to da Choppa!");
+        try {
+            Thread.sleep(10);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Back to da Choppa!");
 
 
     }
