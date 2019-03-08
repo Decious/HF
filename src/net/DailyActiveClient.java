@@ -13,7 +13,7 @@ public class DailyActiveClient {
             InputStreamReader streamReader = new InputStreamReader(s.getInputStream());
             BufferedReader reader = new BufferedReader(streamReader);
             String advice = reader.readLine();
-            System.out.println("Сегодня ты должен:" + advice);
+            System.out.println("Сегодня ты должен: " + advice);
             reader.close();
         } catch (IOException e) {
             e.printStackTrace();
