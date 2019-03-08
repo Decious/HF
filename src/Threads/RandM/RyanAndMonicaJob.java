@@ -1,6 +1,6 @@
 package Threads.RandM;
 
-public class RyanAndMonicaJob implements Runnable {
+public  class RyanAndMonicaJob implements Runnable {
     private BankAccount account = new BankAccount();
 
     public static void main(String[] args) {
@@ -24,7 +24,7 @@ public class RyanAndMonicaJob implements Runnable {
         }
     }
 
-    private void makeWithdrawal(int amount) {
+    private synchronized void makeWithdrawal(int amount) {
         if (account.getBalance() >= amount) {
             System.out.println(Thread.currentThread().getName() + " собирается снять деньги");
 
