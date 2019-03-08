@@ -14,23 +14,23 @@ public class SimpleChatClient {
     PrintWriter writer;
     Socket socket;
 
-    public void go(){
+    public void go() {
         JFrame frame = new JFrame("Very Simple Chat Client");
         JPanel mainPanel = new JPanel();
-        outgoing = new JTextField();
+        outgoing = new JTextField(20);
         JButton sendButton = new JButton("SendIt");
         sendButton.addActionListener(new SendButtonListener());
         mainPanel.add(outgoing);
         mainPanel.add(sendButton);
         frame.getContentPane().add(BorderLayout.CENTER, mainPanel);
         setUpNetWorking();
-        frame.setSize(400,500);
+        frame.setSize(400, 500);
         frame.setVisible(true);
     }
 
     private void setUpNetWorking() {
-        try{
-            socket = new Socket("127.0.0.1" , 5000);
+        try {
+            socket = new Socket("127.0.0.1", 5000);
             writer = new PrintWriter(socket.getOutputStream());
             System.out.println("networking established!");
         } catch (IOException e) {
@@ -42,10 +42,12 @@ public class SimpleChatClient {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            try{
+            try {
                 writer.println(outgoing.getText());
                 writer.flush();
-            }catch (Exception e1){e1.printStackTrace();}
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
             outgoing.setText("");
             outgoing.requestFocus();
         }
