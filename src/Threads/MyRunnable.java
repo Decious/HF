@@ -6,22 +6,28 @@ public class MyRunnable implements Runnable {
         go();
     }
 
-    private void go() {
+    public void go() {
         doMore();
     }
 
-    private void doMore() {
-        System.out.println("**********");
+    public void doMore() {
+        System.out.println("вершина стека");
     }
+}
 
 
-
+class ThreadTestDrive {
     public static void main(String[] args) {
-        Runnable threadJob = new MyRunnable();
-        Thread myThread = new Thread(threadJob);
-        ;
-        System.out.println("Back to da Choppa!");
-        myThread.start();
+
+
+
+            Runnable threadJob = new MyRunnable();
+            Thread myThread = new Thread(threadJob);
+            myThread.start();
+
+
+            System.out.println("Back to da Choppa!");
+
 
     }
 }
