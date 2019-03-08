@@ -7,6 +7,11 @@ public class MyRunnable implements Runnable {
     }
 
     public void go() {
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         doMore();
     }
 
@@ -20,10 +25,9 @@ class ThreadTestDrive {
     public static void main(String[] args) {
 
 
-
-            Runnable threadJob = new MyRunnable();
-            Thread myThread = new Thread(threadJob);
-            myThread.start();
+        Runnable threadJob = new MyRunnable();
+        Thread myThread = new Thread(threadJob);
+        myThread.start();
 
         try {
             Thread.sleep(10);
