@@ -1,5 +1,7 @@
 package net;
 
+import sun.java2d.pipe.SpanShapeRenderer;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -18,13 +20,13 @@ public class SimpleChatClient {
     PrintWriter writer;
     Socket socket;
     BufferedReader reader;
-    static String name;
+     String name;
 
-    public static String getName() {
+    public String getName() {
         return name;
     }
 
-    public static void setName(String name1) {
+    public void setName(String name1) {
         name = name1;
     }
 
@@ -86,7 +88,8 @@ public class SimpleChatClient {
         SimpleChatClient client = new SimpleChatClient();
         System.out.println("Pickup the nickname");
         Scanner scanner = new Scanner(System.in);
-        setName(scanner.nextLine());
+
+        client.setName(scanner.nextLine());
         client.go();
     }
 
