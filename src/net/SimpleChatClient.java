@@ -1,7 +1,4 @@
 package net;
-
-import sun.java2d.pipe.SpanShapeRenderer;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,22 +8,17 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.Scanner;
 
 public class SimpleChatClient {
-    JTextArea incoming;
-    JTextField outgoing;
-    PrintWriter writer;
-    Socket socket;
-    BufferedReader reader;
-     String name;
+    private JTextArea incoming;
+    private JTextField outgoing;
+    private PrintWriter writer;
+    private BufferedReader reader;
+     private String name;
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name1) {
+    private void setName(String name1) {
         name = name1;
     }
 
@@ -58,7 +50,7 @@ public class SimpleChatClient {
 
     private void setUpNetWorking() {
         try {
-            socket = new Socket("127.0.0.1", 5000);
+            Socket socket = new Socket("127.0.0.1", 5000);
             InputStreamReader isr = new InputStreamReader(socket.getInputStream());
             reader = new BufferedReader(isr);
 
