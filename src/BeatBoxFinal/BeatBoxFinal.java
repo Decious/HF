@@ -8,10 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Vector;
+import java.util.*;
 
 public class BeatBoxFinal {
 
@@ -19,14 +16,12 @@ public class BeatBoxFinal {
     private JList incomingList;
     private JTextField userMessage;
     private ArrayList<JCheckBox> checkboxList;
-
     private int nextNum;
     private Vector<String> listVector = new Vector<>();
     private String userName;
     private ObjectOutputStream out;
-      ObjectInputStream in;
+    ObjectInputStream in;
     private HashMap<String, boolean[]> otherSeqsMap = new HashMap<>();
-
     private Sequencer sequencer;
     private Sequence sequence;
     private Sequence mySequence = null;
@@ -39,7 +34,9 @@ public class BeatBoxFinal {
     private int[] instruments = {35, 42, 46, 38, 49, 39, 50, 60, 70, 72, 64, 56, 58, 47, 67, 63};
 
     public static void main(String[] args) {
-        new BeatBoxFinal().startUp("a");
+        Scanner scanner =new Scanner (System.in);
+        String name = scanner.nextLine();
+        new BeatBoxFinal().startUp(name);
     }
 
     private void startUp(String name) {
@@ -48,6 +45,7 @@ public class BeatBoxFinal {
         try {
             Socket socket = new Socket("127.0.0.1", 4242);
             out = new ObjectOutputStream(socket.getOutputStream());
+            in = new ObjectInputStream(socket.getInputStream());
             Thread remote = new Thread(new RemoteReader());
             remote.start();
 
@@ -100,7 +98,7 @@ public class BeatBoxFinal {
         buttonBox.add(downTempo);
 
         JButton send = new JButton("Send");
-        send.addActionListener(new SendListener());
+        send.addActionListener(new MySendListener());
         buttonBox.add(send);
 
         userMessage = new JTextField();
@@ -133,9 +131,6 @@ public class BeatBoxFinal {
             checkboxList.add(c);
             mainPanel.add(c);
         }
-
-        setUpMidi();
-
         theFrame.setBounds(50, 50, 300, 300);
         theFrame.pack();
         theFrame.setVisible(true);
@@ -158,7 +153,6 @@ public class BeatBoxFinal {
 
     private void buildTrackAndStart() {
         ArrayList<Integer> trackList;
-
         sequence.deleteTrack(track);
         track = sequence.createTrack();
 
@@ -197,12 +191,9 @@ public class BeatBoxFinal {
         boolean[] checkboxState = null;
         String nameToShow = null;
         Object obj = null;
-
         @Override
         public void run() {
             try {
-
-
                 while ((obj = in.readObject()) != null) {
                     System.out.println("got an object from server");
                     System.out.println(obj.getClass());
@@ -216,8 +207,9 @@ public class BeatBoxFinal {
                 e.printStackTrace();
             }
         }
-    }
 
+
+    }
     public class MyPlayMineListener implements ActionListener {
 
         @Override
@@ -225,13 +217,6 @@ public class BeatBoxFinal {
             if (mySequence != null) {
                 sequence = mySequence;
             }
-        }
-    }
-
-    private class MyStartListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            buildTrackAndStart();
         }
 
     }
@@ -320,7 +305,7 @@ public class BeatBoxFinal {
         }
     }
 
-    private class SendListener implements ActionListener {
+    private class MySendListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             boolean[] checkboxState = new boolean[256];
@@ -352,6 +337,7 @@ public class BeatBoxFinal {
                 if (selected != null) {
                     boolean[] selectedState = (boolean[]) otherSeqsMap.get(selected);
                     changeSequence(selectedState);
+                    sequencer.stop();
                     buildTrackAndStart();
                 }
             }
@@ -370,15 +356,22 @@ public class BeatBoxFinal {
         }
     }
 
-    public void makeTracks(ArrayList list){
+    public void makeTracks(ArrayList list) {
         Iterator it = list.iterator();
         for (int i = 0; i < 16; i++) {
-            Integer num = (Integer)it.next();
-            if (num != null){
+            Integer num = (Integer) it.next();
+            if (num != null) {
                 int numKey = num.intValue();
-                track.add(Util.makeEvent(144,9,numKey,100,i));
-                track.add(Util.makeEvent(128,9,numKey,100,i+1));
+                track.add(Util.makeEvent(144, 9, numKey, 100, i));
+                track.add(Util.makeEvent(128, 9, numKey, 100, i + 1));
             }
+        }
+    }
+
+    private class MyStartListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            buildTrackAndStart();
         }
     }
 }
