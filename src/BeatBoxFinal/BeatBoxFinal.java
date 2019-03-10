@@ -10,8 +10,10 @@ import java.io.*;
 import java.net.Socket;
 import java.util.*;
 
-public class BeatBoxFinal {
+import static javax.xml.bind.DatatypeConverter.parseInt;
 
+public class BeatBoxFinal {
+    static String [] argz;
     private JFrame theFrame;
     private JList incomingList;
     private JTextField userMessage;
@@ -26,7 +28,7 @@ public class BeatBoxFinal {
     private Sequence sequence;
     private Sequence mySequence = null;
     private Track track = null;
-
+    static String ip;
     private String[] instrumentNames = {"Bass Drum", "Closed Hi-Hat", "Open Hi-Hat",
             "Acoustic Snare", "Crash Cymbal", "Hand Clap", "High Tom", "Hi Bongo",
             "Maracas", "Whistle", "Low Conga", "CowBell", "Vibraslap", "Low-mid Tom",
@@ -34,8 +36,13 @@ public class BeatBoxFinal {
     private int[] instruments = {35, 42, 46, 38, 49, 39, 50, 60, 70, 72, 64, 56, 58, 47, 67, 63};
 
     public static void main(String[] args) {
+        System.out.println("enter name");
         Scanner scanner =new Scanner (System.in);
         String name = scanner.nextLine();
+        System.out.println("enter ip");
+         ip = scanner.nextLine();
+         argz = ip.split(":");
+
         new BeatBoxFinal().startUp(name);
     }
 
@@ -43,7 +50,7 @@ public class BeatBoxFinal {
         userName = name;
 
         try {
-            Socket socket = new Socket("127.0.0.1", 4242);
+            Socket socket = new Socket(argz[0], 4242);
             out = new ObjectOutputStream(socket.getOutputStream());
             in = new ObjectInputStream(socket.getInputStream());
             Thread remote = new Thread(new RemoteReader());
