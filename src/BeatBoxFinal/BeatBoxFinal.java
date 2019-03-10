@@ -22,15 +22,15 @@ public class BeatBoxFinal {
 
     private int nextNum;
     private Vector<String> listVector = new Vector<>();
-    String userName;
-    ObjectOutputStream out;
-    ObjectInputStream in;
-    HashMap<String, boolean[]> otherSeqsMap = new HashMap<>();
+    private String userName;
+    private ObjectOutputStream out;
+      ObjectInputStream in;
+    private HashMap<String, boolean[]> otherSeqsMap = new HashMap<>();
 
-    Sequencer sequencer;
-    Sequence sequence;
-    Sequence mySequence = null;
-    Track track = null;
+    private Sequencer sequencer;
+    private Sequence sequence;
+    private Sequence mySequence = null;
+    private Track track = null;
 
     private String[] instrumentNames = {"Bass Drum", "Closed Hi-Hat", "Open Hi-Hat",
             "Acoustic Snare", "Crash Cymbal", "Hand Clap", "High Tom", "Hi Bongo",
@@ -66,7 +66,7 @@ public class BeatBoxFinal {
         JPanel background = new JPanel(layout);
         background.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        checkboxList = new ArrayList<JCheckBox>();
+        checkboxList = new ArrayList<>();
 
         Box buttonBox = new Box(BoxLayout.Y_AXIS);
 
@@ -157,7 +157,7 @@ public class BeatBoxFinal {
     }
 
     private void buildTrackAndStart() {
-        ArrayList<Integer> trackList = null;
+        ArrayList<Integer> trackList;
 
         sequence.deleteTrack(track);
         track = sequence.createTrack();
@@ -166,7 +166,7 @@ public class BeatBoxFinal {
             trackList = new ArrayList<>();
 
             for (int j = 0; j < 16; j++) {
-                JCheckBox jc = (JCheckBox) checkboxList.get(j + (16 * i));
+                JCheckBox jc = checkboxList.get(j + (16 * i));
                 if (jc.isSelected()) {
                     int key = instruments[i];
                     trackList.add(key);
