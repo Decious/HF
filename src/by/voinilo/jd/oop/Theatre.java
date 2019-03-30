@@ -31,7 +31,8 @@ private Theatre(String name, String title){
     public String getName() {
         return this.name;
     }
-    public String getTitle(){
-        return this.title;
+
+    public String getTitle() {
+        return title;
     }
 }
