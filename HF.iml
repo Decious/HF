@@ -4,8 +4,30 @@
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/src/beatboxfinal" />
+      <excludeFolder url="file://$MODULE_DIR$/src/beatboxmachine" />
+      <excludeFolder url="file://$MODULE_DIR$/src/beatboxserverfin" />
+      <excludeFolder url="file://$MODULE_DIR$/src/graphic" />
+      <excludeFolder url="file://$MODULE_DIR$/src/iostuff" />
+      <excludeFolder url="file://$MODULE_DIR$/src/musicstruff" />
+      <excludeFolder url="file://$MODULE_DIR$/src/musicvisualizer" />
+      <excludeFolder url="file://$MODULE_DIR$/src/net" />
+      <excludeFolder url="file://$MODULE_DIR$/src/phrasegenerator" />
+      <excludeFolder url="file://$MODULE_DIR$/src/quiz" />
+      <excludeFolder url="file://$MODULE_DIR$/src/seabattle" />
+      <excludeFolder url="file://$MODULE_DIR$/src/threads" />
+      <excludeFolder url="file://$MODULE_DIR$/src/treesettest" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../servlet-api-2.5.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
