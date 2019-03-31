@@ -1,0 +1,3 @@
+messages.name=Дмитрий
+messages.question=Как дела?
+messages.welcome=Привет!
