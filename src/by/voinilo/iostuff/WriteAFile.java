@@ -1,4 +1,4 @@
-package iostuff;
+package by.voinilo.iostuff;
 
 import java.io.FileWriter;
 import java.io.IOException;
